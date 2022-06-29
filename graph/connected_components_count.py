@@ -14,13 +14,13 @@ def connected_components_count(graph):
 
 
 
-def get_connected_components(graph, node, components=[]):
-    # returns an array of the components connected to a node
-
-    if node not in components:
-        components.append(node)
-        for neighbor in graph[node]:
-            components = get_connected_components(graph, neighbor, components)
-
+def get_connected_components(graph, node):
+    stack = [node]
+    components = []
+    while stack:
+        current = stack.pop()
+        if current not in components:
+            components.append(current)
+            stack.extend(graph[current])
     return components
 
