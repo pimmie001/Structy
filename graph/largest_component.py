@@ -10,8 +10,7 @@ def largest_component(graph):
             largest = len(components)
 
         for node in components:
-            if node in nodes:
-                nodes.remove(node)
+            nodes.remove(node)
 
     return largest
 

@@ -7,8 +7,7 @@ def connected_components_count(graph):
     while nodes:
         count += 1
         for node in get_connected_components(graph, nodes[0]):
-            if node in nodes:
-                nodes.remove(node)
+            nodes.remove(node)
 
     return count
 
