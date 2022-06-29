@@ -1,11 +1,10 @@
 def has_path(graph, src, dst):
+    if src == dst:
+        return True
+
     for neighbor in graph[src]:
-        if neighbor == dst:
-            return True
         if has_path(graph, neighbor, dst):
             return True
     
     return False
 
-
-print(has_path({'a':[]}, 'a', 'a'))
