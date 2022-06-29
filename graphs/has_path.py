@@ -6,3 +6,6 @@ def has_path(graph, src, dst):
             return True
     
     return False
+
+
+print(has_path({'a':[]}, 'a', 'a'))
