@@ -4,14 +4,13 @@ def counting_change(amount, coins):
     return _counting_change(amount, sorted_coins)
 
 
-
 def _counting_change(amount, coins, ind=0, memo={}):
     # only works if the coins are sorted
 
     if amount == 0:
         return 1
 
-    if ind == len(coins) or amount < coins[ind]:
+    if ind == len(coins):
         return 0
 
     if (amount, ind) in memo:
