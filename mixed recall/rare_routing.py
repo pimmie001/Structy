@@ -1,33 +1,23 @@
-from collections import deque
-
-
 def rare_routing(n, roads):
-    # time O(n^3)
+    # time O(n^2)
     graph = make_graph(roads)
-    for node in graph:
-        if not rare_routing_node(n, node, graph):
-            return False
-    return True
-
-
-def rare_routing_node(n, start_node, graph):
-    Q = deque([(start_node, None)]) # (node, predecessor)
     visited = set()
+    valid = rare_routing_node(graph, 0, visited)
+    return valid and len(visited) == n
 
-    while Q:
-        current, predecessor = Q.popleft()
 
-        if current in visited:
-            return False
+def rare_routing_node(graph, node, visited, predecessor=None):
+    if node in visited:
+        return False
 
-        visited.add(current)
+    visited.add(node)
 
-        for neighbor in graph[current]:
-            if neighbor != predecessor:
-                Q.append((neighbor, current))
+    for neighbor in graph[node]:
+        if neighbor != predecessor:
+            if not rare_routing_node(graph, neighbor, visited, predecessor=node):
+                return False
 
-    return len(visited) == n 
-
+    return True
 
 
 def make_graph(roads):
@@ -42,4 +32,3 @@ def make_graph(roads):
         else:
             graph[b] = [a]
     return graph
-
